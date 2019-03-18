@@ -31,12 +31,12 @@ void homing()
 {
   digitalWrite(azDirpin, LOW);
   digitalWrite(elDirpin, LOW);
-  while(homeAz != HIGH)
+  while(digitalRead(homeAz) != HIGH)
   {
     AZstepper.move(1);
     AZstepper.run();
   }
-  while(homeEl != HIGH)
+  while(digitalRead(homeEl) != HIGH)
   {
     ELstepper.move(1);
     ELstepper.run();

@@ -661,6 +661,7 @@ DRV8825</text>
 <text x="292.1" y="22.86" size="1.778" layer="91">Motor controller</text>
 <text x="302.26" y="78.74" size="1.778" layer="91">1</text>
 <text x="302.26" y="30.48" size="1.778" layer="91">2</text>
+<text x="2.54" y="22.86" size="1.778" layer="91">controller and wifi</text>
 </plain>
 <instances>
 <instance part="U$2" gate="G$1" x="304.8" y="93.98" smashed="yes"/>
@@ -694,7 +695,7 @@ DRV8825</text>
 </segment>
 <segment>
 <pinref part="U$4" gate="G$1" pin="GND"/>
-<wire x1="325.12" y1="38.1" x2="337.82" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="325.12" y1="38.1" x2="335.28" y2="38.1" width="0.1524" layer="91"/>
 <label x="335.28" y="38.1" size="1.778" layer="95" align="bottom-right"/>
 </segment>
 <segment>
@@ -716,6 +717,11 @@ DRV8825</text>
 <pinref part="U$1" gate="G$1" pin="GND@1"/>
 <wire x1="0" y1="38.1" x2="-15.24" y2="38.1" width="0.1524" layer="91"/>
 <label x="-12.7" y="38.1" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="GND"/>
+<wire x1="325.12" y1="86.36" x2="335.28" y2="86.36" width="0.1524" layer="91"/>
+<label x="335.28" y="86.36" size="1.778" layer="95" align="bottom-right"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -774,20 +780,6 @@ DRV8825</text>
 <wire x1="325.12" y1="43.18" x2="345.44" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$13" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="GND"/>
-<wire x1="325.12" y1="86.36" x2="337.82" y2="86.36" width="0.1524" layer="91"/>
-<label x="335.28" y="86.36" size="1.778" layer="95" align="bottom-right"/>
-</segment>
-</net>
-<net name="N$14" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="FLT_N"/>
-<wire x1="325.12" y1="88.9" x2="337.82" y2="88.9" width="0.1524" layer="91"/>
-<label x="335.28" y="88.9" size="1.778" layer="95" align="bottom-right"/>
-</segment>
-</net>
 <net name="V_EXTERNAL" class="0">
 <segment>
 <pinref part="U$2" gate="G$1" pin="VMOT"/>
@@ -798,13 +790,6 @@ DRV8825</text>
 <pinref part="U$4" gate="G$1" pin="VMOT"/>
 <wire x1="325.12" y1="55.88" x2="355.6" y2="55.88" width="0.1524" layer="91"/>
 <label x="350.52" y="55.88" size="1.778" layer="95" align="bottom-right"/>
-</segment>
-</net>
-<net name="N$26" class="0">
-<segment>
-<pinref part="U$4" gate="G$1" pin="FLT_N"/>
-<wire x1="325.12" y1="40.64" x2="337.82" y2="40.64" width="0.1524" layer="91"/>
-<label x="335.28" y="40.64" size="1.778" layer="95" align="bottom-right"/>
 </segment>
 </net>
 <net name="AD0" class="0">

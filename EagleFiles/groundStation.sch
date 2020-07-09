@@ -3998,6 +3998,7 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <part name="C3" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-100V-10%" value="1uf"/>
 <part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-100V-10%" value="1uf"/>
 <part name="R8" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:6240565/1" value="50ohm"/>
+<part name="EXTERNAL" library="con-amp-quick" library_urn="urn:adsk.eagle:library:125" deviceset="M02" device="" package3d_urn="urn:adsk.eagle:package:5956/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -4046,8 +4047,8 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <attribute name="NAME" x="267.716" y="266.319" size="1.778" layer="95" font="vector" rot="R180"/>
 <attribute name="VALUE" x="267.716" y="271.399" size="1.778" layer="96" font="vector" rot="R180"/>
 </instance>
-<instance part="SUPPLY3" gate="GND" x="208.28" y="284.48" smashed="yes">
-<attribute name="VALUE" x="206.375" y="281.305" size="1.778" layer="96"/>
+<instance part="SUPPLY3" gate="GND" x="205.74" y="266.7" smashed="yes">
+<attribute name="VALUE" x="203.835" y="263.525" size="1.778" layer="96"/>
 </instance>
 <instance part="SUPPLY4" gate="GND" x="226.06" y="287.02" smashed="yes">
 <attribute name="VALUE" x="224.155" y="283.845" size="1.778" layer="96"/>
@@ -4110,6 +4111,10 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <instance part="R8" gate="G$1" x="43.18" y="246.38" smashed="yes" rot="R90">
 <attribute name="NAME" x="41.6814" y="242.57" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="46.482" y="242.57" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="EXTERNAL" gate="G$1" x="182.88" y="292.1" smashed="yes">
+<attribute name="VALUE" x="180.34" y="287.02" size="1.778" layer="96"/>
+<attribute name="NAME" x="180.34" y="297.942" size="1.778" layer="95"/>
 </instance>
 </instances>
 <busses>
@@ -4175,6 +4180,10 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <wire x1="231.14" y1="299.72" x2="231.14" y2="289.56" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="289.56" x2="226.06" y2="289.56" width="0.1524" layer="91"/>
 <junction x="226.06" y="289.56"/>
+<pinref part="EXTERNAL" gate="G$1" pin="1"/>
+<wire x1="190.5" y1="292.1" x2="210.82" y2="292.1" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="292.1" x2="210.82" y2="289.56" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="289.56" x2="226.06" y2="289.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="1"/>
@@ -4404,13 +4413,6 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <label x="-12.7" y="40.64" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="VIN" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="VIN"/>
-<wire x1="0" y1="35.56" x2="-15.24" y2="35.56" width="0.1524" layer="91"/>
-<label x="-12.7" y="35.56" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="STEP2" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="D2"/>
@@ -4574,11 +4576,22 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <junction x="287.02" y="307.34"/>
 </segment>
 </net>
-<net name="VCC_BATOUT" class="0">
+<net name="RAW_VCC" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="304.8" y1="307.34" x2="309.88" y2="307.34" width="0.1524" layer="91"/>
 <label x="309.88" y="307.34" size="1.778" layer="95"/>
+<pinref part="EXTERNAL" gate="G$1" pin="2"/>
+<wire x1="190.5" y1="294.64" x2="198.12" y2="294.64" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="294.64" x2="198.12" y2="317.5" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="317.5" x2="304.8" y2="317.5" width="0.1524" layer="91"/>
+<wire x1="304.8" y1="317.5" x2="304.8" y2="307.34" width="0.1524" layer="91"/>
+<junction x="304.8" y="307.34"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="VIN"/>
+<wire x1="0" y1="35.56" x2="-15.24" y2="35.56" width="0.1524" layer="91"/>
+<label x="-12.7" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$4" class="0">

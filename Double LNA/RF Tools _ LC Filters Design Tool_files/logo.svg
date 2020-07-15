@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="3325"
+   height="1000"
+   viewBox="0 0 3325 1000"
+   preserveAspectRatio="none"
+   id="svg3391"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview3404"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-page="false"
+     showborder="true"
+     inkscape:zoom="0.15828031"
+     inkscape:cx="2734.9264"
+     inkscape:cy="881.0337"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3391">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4212"
+       spacingx="5"
+       spacingy="5" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3406">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <!--
+Source URL: holder.js/100%x200
+Created with Holder.js 2.6.0.
+Learn more at http://holderjs.com
+(c) 2012-2015 Ivan Malopinsky - http://imsky.co
+-->
+  <rect
+     style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:40;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+     id="rect4542-0"
+     width="1000"
+     height="1000"
+     x="0"
+     y="0"
+     ry="0" />
+  <defs
+     id="defs3393">
+    <style
+       type="text/css"
+       id="style3395">#holder_158d08478c9 text { fill:#AAAAAA;font-weight:bold;font-family:Arial, Helvetica, Open Sans, sans-serif, monospace;font-size:12pt } </style>
+  </defs>
+  <rect
+     style="fill:none;stroke:none;stroke-opacity:0"
+     id="rect4388"
+     width="78400"
+     height="64000"
+     x="-94400"
+     y="-56600" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 475,-800 400,675 550,0"
+     id="path4514"
+     inkscape:connector-curvature="0" />
+  <g
+     transform="scale(0.96625014,1.0349287)"
+     style="font-style:normal;font-weight:normal;font-size:47.53067398px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="text4156">
+    <path
+       d="m 300.11622,458.97528 q 34.58136,0 49.44277,-12.86083 15.14721,-12.86084 15.14721,-42.29786 0,-29.15123 -15.14721,-41.72627 -14.86141,-12.57504 -49.44277,-12.57504 l -46.29901,0 0,109.46 46.29901,0 z m -46.29901,76.02183 0,161.47494 -110.03159,0 0,-426.69395 168.04825,0 q 84.30992,0 123.46402,28.29384 39.4399,28.29384 39.4399,89.45426 0,42.29786 -20.57734,69.44851 -20.29154,27.15065 -61.44621,40.01149 22.57791,5.14433 40.29728,23.4353 18.00517,18.00517 36.29614,54.8729 l 59.73143,121.17765 -117.1765,0 -52.01493,-106.03045 q -15.7188,-32.00919 -32.00919,-43.72684 -16.0046,-11.71765 -42.86945,-11.71765 l -31.15181,0 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#ffffff;fill-opacity:1"
+       id="path4197" />
+    <path
+       d="m 594.20066,269.7781 296.9424,0 0,83.16674 -186.91081,0 0,79.45138 175.76475,0 0,83.16674 -175.76475,0 0,180.90909 -110.03159,0 0,-426.69395 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#ffffff;fill-opacity:1"
+       id="path4199" />
+  </g>
+  <g
+     transform="scale(0.96625014,1.0349287)"
+     style="font-style:normal;font-weight:normal;font-size:47.53067398px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="text4156-2">
+    <path
+       d="m 1179.8187,269.77816 393.2557,0 0,83.16674 -141.4692,0 0,343.52721 -110.0316,0 0,-343.52721 -141.7549,0 0,-83.16674 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#000000;fill-opacity:1"
+       id="path4202" />
+    <path
+       d="m 1824.5752,341.79884 q -50.3001,0 -78.0224,37.15353 -27.7222,37.15352 -27.7222,104.60146 0,67.16214 27.7222,104.31567 27.7223,37.15352 78.0224,37.15352 50.586,0 78.3082,-37.15352 27.7223,-37.15353 27.7223,-104.31567 0,-67.44794 -27.7223,-104.60146 -27.7222,-37.15353 -78.3082,-37.15353 z m 0,-79.73718 q 102.8867,0 161.1892,58.87405 58.3024,58.87405 58.3024,162.61812 0,103.45828 -58.3024,162.33232 -58.3025,58.87405 -161.1892,58.87405 -102.6009,0 -161.1891,-58.87405 -58.3025,-58.87404 -58.3025,-162.33232 0,-103.74407 58.3025,-162.61812 58.5882,-58.87405 161.1891,-58.87405 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#000000;fill-opacity:1"
+       id="path4204" />
+    <path
+       d="m 2321.8608,341.79884 q -50.3001,0 -78.0224,37.15353 -27.7222,37.15352 -27.7222,104.60146 0,67.16214 27.7222,104.31567 27.7223,37.15352 78.0224,37.15352 50.586,0 78.3082,-37.15352 27.7223,-37.15353 27.7223,-104.31567 0,-67.44794 -27.7223,-104.60146 -27.7222,-37.15353 -78.3082,-37.15353 z m 0,-79.73718 q 102.8867,0 161.1892,58.87405 58.3024,58.87405 58.3024,162.61812 0,103.45828 -58.3024,162.33232 -58.3025,58.87405 -161.1892,58.87405 -102.6009,0 -161.1891,-58.87405 -58.3025,-58.87404 -58.3025,-162.33232 0,-103.74407 58.3025,-162.61812 58.5882,-58.87405 161.1891,-58.87405 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#000000;fill-opacity:1"
+       id="path4206" />
+    <path
+       d="m 2624.2334,269.77816 110.0316,0 0,343.52721 193.1983,0 0,83.16674 -303.2299,0 0,-426.69395 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#000000;fill-opacity:1"
+       id="path4208" />
+    <path
+       d="m 3293.8542,283.21059 0,90.31165 q -35.1529,-15.7188 -68.5911,-23.7211 -33.4382,-8.0023 -63.161,-8.0023 -39.4399,0 -58.3024,10.86026 -18.8626,10.86027 -18.8626,33.72397 0,17.14778 12.5751,26.86486 12.8608,9.43128 46.299,16.29039 l 46.8706,9.43128 q 71.1633,14.28982 101.1719,43.44105 30.0086,29.15122 30.0086,82.88093 0,70.5917 -42.0121,105.17306 -41.7262,34.29556 -127.7509,34.29556 -40.5831,0 -81.452,-7.7165 -40.8689,-7.7165 -81.7378,-22.86371 l 0,-92.88381 q 40.8689,21.72052 78.8798,32.86658 38.2967,10.86026 73.7355,10.86026 36.0103,0 55.1587,-12.00345 19.1483,-12.00344 19.1483,-34.29556 0,-20.00574 -13.1466,-30.866 -12.8608,-10.86026 -51.7291,-19.43415 l -42.5837,-9.43128 q -64.0184,-13.71823 -93.7412,-43.72684 -29.437,-30.00862 -29.437,-80.88037 0,-63.73258 41.1547,-98.02815 41.1546,-34.29556 118.3197,-34.29556 35.1529,0 72.3064,5.43013 37.1536,5.14434 76.8792,15.7188 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:585.31091309px;font-family:'Ozrad CLM';-inkscape-font-specification:'Ozrad CLM Bold';fill:#000000;fill-opacity:1"
+       id="path4210" />
+  </g>
+</svg>

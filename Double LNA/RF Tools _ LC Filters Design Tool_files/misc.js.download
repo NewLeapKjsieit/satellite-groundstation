@@ -1,0 +1,42 @@
+function find_source(source_name) {
+    for (plot_id in Bokeh.index) {
+        var plot = Bokeh.index[plot_id];
+        var d  = plot.model.document.get_model_by_name(source_name);
+        if( d != null ) { 
+            return d
+        }
+    }
+    return null
+}
+
+function update_source(source_name, x_name, y_name, x_values, y_values) {
+
+    // iterate until plot source exists
+    var checkExist = setInterval(function() {
+        var source = find_source(source_name)
+        if (source != null) {            
+            // Convert Array to Float64Array (Float64Array.from() not supported in IE)
+            var x_values_Float64Array = new Float64Array(x_values);
+            var y_values_Float64Array = new Float64Array(y_values);
+            source.data[x_name] = x_values_Float64Array;
+            source.data[y_name] = y_values_Float64Array;
+            source.change.emit();
+            clearInterval(checkExist);
+        }
+    }, 50); // check every 50ms
+}
+
+function adjust_size(source_name) {
+
+    // iterate until plot source exists
+    var checkExist = setInterval(function() {
+        var source = find_source(source_name)
+        if (source != null) {         
+            // resize page after load to reposition chart currectly
+            var evt = window.document.createEvent('UIEvents'); 
+            evt.initUIEvent('resize', true, false, window, 0); 
+            window.dispatchEvent(evt);
+            clearInterval(checkExist);
+        }
+    }, 50); // check every 50ms
+}

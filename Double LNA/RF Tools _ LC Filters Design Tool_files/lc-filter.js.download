@@ -1,0 +1,318 @@
+var S;
+
+function unwrap_phase(phase_wrap) {
+    var phase_unwrap = math.ones(phase_wrap.length)._data
+    phase_unwrap[0] = phase_wrap[0]
+    var delta = 0
+    for (index = 1; index < phase_wrap.length; index++) {
+        var diff = phase_wrap[index] - phase_wrap[index - 1]
+        if (diff > math.pi) {
+            delta -= 2 * math.pi
+        }
+        else {
+            if (diff < -math.pi) {
+                delta += 2 * math.pi
+            }    
+        }
+        phase_unwrap[index] = phase_wrap[index] + delta
+    }
+    return phase_unwrap
+}
+
+function calculate_z(circuit, f) {
+
+    var s = math.dotMultiply(math.complex(0, 2 * math.pi), math.matrix(f))
+    var vs = math.ones(f.length)
+
+    var RS = circuit[3][0]
+    if ((RS == 0) && (circuit[0][0] == 9)) {
+        RS = 1e20
+    }
+
+    var Zs = math.dotMultiply(RS, math.ones(f.length)) /* equivalent source impedance */
+
+    for (index = 1; index <= (circuit[0].length - 2); index++) {
+        var C = circuit[1][index]
+        var L = circuit[2][index]
+        if (circuit[0][index] == 0) { /* series capacitor */
+            var Z = math.dotDivide(1, math.dotMultiply(s, C))
+            Zs = math.add(Z, Zs)
+        }
+        if (circuit[0][index] == 1) { /* shunt capacitor */
+            Z = math.dotDivide(1, math.dotMultiply(s, C))
+            vs = math.dotDivide(vs, Zs)
+            Zs = math.dotDivide(math.dotMultiply(Z, Zs), math.add(Z, Zs))
+            vs = math.dotMultiply(vs, Zs)
+        }
+        if (circuit[0][index] == 2) { /* series inductor */
+            Z = math.dotMultiply(s, L)
+            Zs = math.add(Z, Zs)
+        }
+        if (circuit[0][index] == 3) { /* shunt inductor */
+            Z = math.dotMultiply(s, L)
+            vs = math.dotDivide(vs, Zs)
+            Zs = math.dotDivide(math.dotMultiply(Z, Zs), math.add(Z, Zs))
+            vs = math.dotMultiply(vs, Zs)
+        }
+        if (circuit[0][index] == 4) { /* series series-lc */
+            ZC = math.dotDivide(1, math.dotMultiply(s, C))
+            ZL = math.dotMultiply(s, L)
+            Z = math.add(ZC, ZL)
+            Zs = math.add(Z, Zs)
+        }
+        if (circuit[0][index] == 5) { /* shunt parallel-lc */
+            ZC = math.dotDivide(1, math.dotMultiply(s, C))
+            ZL = math.dotMultiply(s, L)
+            Z = math.dotDivide(math.dotMultiply(ZC, ZL), math.add(ZC, ZL))
+            vs = math.dotDivide(vs, Zs)
+            Zs = math.dotDivide(math.dotMultiply(Z, Zs), math.add(Z, Zs))
+            vs = math.dotMultiply(vs, Zs)
+        }
+        if (circuit[0][index] == 6) { /* series parallel-lc */
+            ZC = math.dotDivide(1, math.dotMultiply(s, C))
+            ZL = math.dotMultiply(s, L)
+            Z = math.dotDivide(math.dotMultiply(ZC, ZL), math.add(ZC, ZL))
+            Zs = math.add(Z, Zs)
+        }
+        if (circuit[0][index] == 7) { /* shunt series-lc */
+            ZC = math.dotDivide(1, math.dotMultiply(s, C))
+            ZL = math.dotMultiply(s, L)
+            Z = math.add(ZC, ZL)
+            vs = math.dotDivide(vs, Zs)
+            Zs = math.dotDivide(math.dotMultiply(Z, Zs), math.add(Z, Zs))
+            vs = math.dotMultiply(vs, Zs)
+        }
+    }
+
+    return [Zs, vs]
+}
+
+
+function calculate_s2p(circuit, f) {
+    
+    var RS = circuit[3][0]
+    var RL = circuit[3][circuit[0].length - 1]
+
+    var circuit_reverse = []
+    for(index = 0; index < circuit.length; index++){
+        circuit_reverse[index] = circuit[index].slice()
+        circuit_reverse[index].reverse()
+    }
+
+    var result1 = calculate_z(circuit_reverse, f)
+    var Z1 = result1[0]
+    var vs1 = result1[1]
+
+    var result2 = calculate_z(circuit, f)
+    var Z2 = result2[0]
+    var vs2 = result2[1]
+
+    // calculate s2p
+    if (RS != 0 && RL != 0) {
+
+        var v1 = math.dotDivide(Z1, math.add(Z1, RS))
+        var i1 = math.dotDivide(v1, Z1)
+        var a1 = math.dotDivide(math.add(v1, math.dotMultiply(RS, i1)), 2 * math.sqrt(RS))
+
+        var v2 = math.dotDivide(math.dotMultiply(vs2, RL), math.add(Z2, RL))
+        var i2 = math.dotDivide(v2, -RL)
+        var b2 = math.dotDivide(math.add(v2, math.dotMultiply(-RL, i2)), 2 * math.sqrt(RL))
+
+        var S11 = math.dotDivide(math.add(Z1, -RS), math.add(Z1, RS))
+        var S21 = math.dotDivide(b2, a1)
+        var S22 = math.dotDivide(math.add(Z2, -RL), math.add(Z2, RL))
+
+    }
+    else {
+        var S11 = math.dotMultiply(1e-20, math.ones(f.length))
+        var S22 = math.dotMultiply(1e-20, math.ones(f.length))
+
+        if (RL == 0) {
+            if (circuit[0][0] == 9) {
+                var S21 = math.dotDivide(math.dotMultiply(RS, vs2), Z2)
+            }
+            else {
+                var S21 = vs2
+            }
+        }
+        else { // RS == 0
+            if (circuit[0][0] == 8) {
+                var S21 = math.dotDivide(math.dotMultiply(RL, vs2), math.add(RL, Z2))
+            }
+            else {
+                var S21 = math.dotDivide(math.dotMultiply(1e20, vs2), math.add(RL, Z2))
+            }
+        }
+
+    }
+
+    var S11_dB = math.dotMultiply(20, math.log10(math.abs(S11)))._data
+    var S21_dB = math.dotMultiply(20, math.log10(math.abs(S21)))._data
+    var S22_dB = math.dotMultiply(20, math.log10(math.abs(S22)))._data
+
+    var S11_phase_wrap = math.arg(S11)._data // rad
+    var S21_phase_wrap = math.arg(S21)._data // rad
+    var S22_phase_wrap = math.arg(S22)._data // rad
+
+    var S21_phase_unwrap = unwrap_phase(S21_phase_wrap)
+    var S21_gd = math.dotDivide(math.subtract(S21_phase_unwrap.slice(1, S21_phase_unwrap.length), S21_phase_unwrap.slice(0, S21_phase_unwrap.length - 1)), math.subtract(f.slice(1, S21_phase_unwrap.length), f.slice(0, S21_phase_unwrap.length - 1)))
+    S21_gd = math.dotMultiply(-1e9 / (2 * math.pi), S21_gd)
+    S21_gd.push(S21_gd[S21_gd.length - 1])
+
+    S11_phase_wrap = math.dotMultiply(180 / math.pi, S11_phase_wrap)
+    S21_phase_wrap = math.dotMultiply(180 / math.pi, S21_phase_wrap)
+    S22_phase_wrap = math.dotMultiply(180 / math.pi, S22_phase_wrap)
+
+    return [S11_dB, S21_dB, S22_dB, S11_phase_wrap, S21_phase_wrap, S22_phase_wrap, S21_gd]
+}
+
+/* Adjust properties according to filter type */
+function update_form() {
+
+        if($('#form_general-filter_response').val() == 'lowpass' || $('#form_general-filter_response').val() == 'highpass'){
+            $('#type1_lowpass_form').show();
+            $('#type1_lowpass_label').show();
+            $('#lowpass_label').show();
+            $('#lowpass_form').show();
+            $('#type1_bandpass_form').hide();
+            $('#type1_bandpass_label').hide();
+            $('#bandpass_label').hide();
+            $('#bandpass_form').hide();
+        }
+        else {
+            $('#type1_lowpass_form').hide();
+            $('#type1_lowpass_label').hide();
+            $('#lowpass_label').hide();
+            $('#lowpass_form').hide();
+            $('#type1_bandpass_form').show();
+            $('#type1_bandpass_label').show();
+            $('#bandpass_label').show();
+            $('#bandpass_form').show();
+        }
+
+        if($('#form_general-filter_type').val() == 'chebyshev' || $('#form_general-filter_type').val() == 'elliptic' || $('#form_general-filter_type').val() == 'inv_cheb'){
+            $('#ripple_att_label').show();
+            $('#ripple_att_form').show();
+            $('#ripple_label').show();
+            $('#ripple_form').show();
+            $('#att_label').show();
+            $('#att_form').show();
+            if($('#form_general-filter_type').val() == 'chebyshev'){
+                $('#att_label').hide();
+                $('#att_form').hide();
+            }
+            if($('#form_general-filter_type').val() == 'inv_cheb'){
+                $('#ripple_label').hide();
+                $('#ripple_form').hide();
+            }  
+        }
+        else {
+            $('#ripple_att_label').hide();
+            $('#ripple_att_form').hide();
+            $('#ripple_label').hide();
+            $('#ripple_form').hide();
+            $('#att_label').hide();
+            $('#att_form').hide();
+        }
+
+        if($('#form_general-component_values').val() == 'exact'){
+            $('#standard_values_settings').hide();
+        }
+        else {
+            $('#standard_values_settings').show();
+        }
+
+}
+
+function makeTable(f, S) {
+    var result = "<table class='table table-bordered table-hover row-bottom-margin-sm' id='data_table'>";
+    result += "<thead><tr>"
+    result += "<th class='text-center small padding-sm col-xs-1'>Frequency (Hz)</th>"
+    result += "<th class='text-center small padding-sm col-xs-1'>S21 / S12 (dB)</th>"
+    result += "<th class='text-center small padding-sm col-xs-1'>S11 (dB)</th>"
+    result += "<th class='text-center small padding-sm col-xs-1'>S22 (dB)</th>"
+    result += "</tr></thead><tbody>"
+    for(var index=0; index<f.length; index+=10) {
+        result += "<tr>";
+        result += "<td class='text-center small'>"+(f[index]).toFixed(0)+"</td>";
+        result += "<td class='text-center small'>"+S[1][index].toFixed(2)+"</td>";
+        result += "<td class='text-center small'>"+S[0][index].toFixed(2)+"</td>";
+        result += "<td class='text-center small'>"+S[2][index].toFixed(2)+"</td>";
+        result += "</tr>";
+    }
+    result += "</tbody></table>";
+
+    return result;
+}
+
+function makeS2P(f, S, RS) {
+    var result = "! rf-tools.com\n";
+    result += "! Date: " + Date() + "\n";
+    result += "# Hz S DB R " + (RS).toPrecision(4) + "\n"
+    result += "!Frequency        S11 dB       S11 Deg       S21 dB      S21 Deg      "
+                                + "S12 dB      S12 Deg      S22 dB       S22 Deg      \n"
+    for(var index=0; index<f.length; index++) {
+        result += (f[index]).toFixed(5) + "    "
+                + S[0][index].toFixed(5) + "    "
+                + S[3][index].toFixed(5) + "    "
+                + S[1][index].toFixed(5) + "    "
+                + S[4][index].toFixed(5) + "    "
+                + S[1][index].toFixed(5) + "    "
+                + S[4][index].toFixed(5) + "    "
+                + S[2][index].toFixed(5) + "    "
+                + S[5][index].toFixed(5) + "\n"
+    }
+
+    return result;
+}
+
+$(document).ready(function(){
+
+    /* initialize select form theme */
+    $('.selectpicker').selectpicker({
+        style: 'btn-default btn-sm',
+        size: 10
+    });
+
+    /* forms initialize on load*/
+    update_form()
+
+    /* forms initialize on select change */
+    $('#form_general-filter_response').change(function(){
+        update_form();
+    });
+    $('#form_general-filter_type').change(function(){
+        update_form();
+    });
+    $('#form_general-component_values').change(function(){
+        update_form();
+    });
+
+    /* s2p calculation and plot */
+    S = calculate_s2p(circuit, f)
+    update_source('mysource1', 'x1', 'y1', f, S[1])
+    update_source('mysource2', 'x2', 'y2', f, S[0])
+    update_source('mysource3', 'x3', 'y3', f, S[2])
+    update_source('mysource4', 'x4', 'y4', f, S[4])
+    update_source('mysource5', 'x5', 'y5', f, S[6])
+
+    var table = makeTable(f, S)
+    $('#menu2').append(table)
+
+    var RS = circuit[3][0]
+    var RL = circuit[3][circuit[0].length - 1]
+    if (RS!=RL) {
+        document.getElementById("download_s2p").disabled = true;
+        document.getElementById("download_s2p_disable").style.display = "block";
+    }
+
+    adjust_size('mysource1')
+
+});
+
+function saveS2P() {
+    var RS = circuit[3][0]
+    var s2p = makeS2P(f, S, RS)
+    var blob = new Blob([s2p], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "filter.s2p");
+}
